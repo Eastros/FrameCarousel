@@ -1,0 +1,27 @@
+{
+  "name": "frame-carousel",
+  "title": "Frame Carousel",
+  "description": "A jQuery plugin to create carousels within frames",
+  "version": "0.1.0",
+  "homepage": "http://www.eastros.com/frame-carousel/",
+  "author": {
+    "name": "Umar Ashfaq",
+    "email": "umar.mughal2@gmail.com",
+    "url": "http://www.eastros.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Eastros/FrameCarousel.git"
+  },
+  "bugs": "https://github.com/Eastros/FrameCarousel/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.eastros.com/frame-carousel//blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}

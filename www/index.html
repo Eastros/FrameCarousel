@@ -1,0 +1,455 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>FrameCarousel - A jQuery plugin to create carousels within frames</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- Bootstrap -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link href="assets/vendor/frame-carousel/jquery.frame-carousel.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/vendor/highlight/styles/default.css">
+
+        <link rel="stylesheet/less" type="text/css" href="assets/css/main.less" />
+    </head>
+    <body data-spy="scroll" data-target="#navbar-top">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+        <nav class="navbar navbar-default navbar-fixed-top" id="navbar-top">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">FrameCarousel</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#demo">Demo <span class="sr-only">(current)</span></a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#options">Options</a></li>
+                <li><a href="#funcs">Functions</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#faqs">FAQs</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/Eastros/FrameCarousel/archive/master.zip">Download</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="container-fluid content-body">
+
+            <div class="row row-section row-title">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h1>FrameCarousel</h1>
+                <span>A jQuery plugin to create carousels within frames</span>
+              </div>
+            </div>
+
+            <div class="row row-section row-demo" id="demo">
+              <div class="col-lg-8 col-lg-offset-2">
+                <div class="fc-ios"></div>
+              </div>
+
+              <div class="col-lg-8 col-lg-offset-2">
+                <div class="fc-android"></div>
+              </div>
+
+              <div class="col-lg-8 col-lg-offset-2">
+                <div class="fc-mbp"></div>
+              </div>
+
+              <div class="col-lg-8 col-lg-offset-2">
+                <div class="fc-mac"></div>
+              </div>
+
+              <div class="col-lg-8 col-lg-offset-2">
+                <div class="download"><a href="https://github.com/Eastros/FrameCarousel/archive/master.zip" class="btn btn-primary btn-lg">Download</a><br/>
+                  <a href="https://github.com/Eastros/FrameCarousel" class="btn-view-github"><i class="fa fa-github"></i> View on GitHub</a>&nbsp;&nbsp;&nbsp;<a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a></div>
+              </div>
+            </div>
+
+            <div class="row row-section row-features row-pink" id="features">
+              <div class="col-lg-8 col-lg-offset-2">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="feature clearfix">
+                      <div class="pull-left icon"><i class="fa fa-tablet"></i></div>
+                      <div class="pull-left description">
+                        <h4>Responsive</h4>
+                        <p>Resizes itself for different screen sizes. Can even remove frame beyond a certain screen size.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="feature clearfix">
+                      <div class="pull-left icon"><i class="fa fa-hand-o-up"></i></div>
+                      <div class="pull-left description">
+                        <h4>Touch Friendly</h4>
+                        <p>Highly responsive to touch gestures on smart devices.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="feature clearfix">
+                      <div class="pull-left icon"><i class="fa fa-flash"></i></div>
+                      <div class="pull-left description">
+                        <h4>GPU Acceleration</h4>
+                        <p>Takes advantage of CSS3 3D acceleration so it runs smooth on every device.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="feature clearfix">
+                      <div class="pull-left icon"><i class="fa fa-paper-plane"></i></div>
+                      <div class="pull-left description">
+                        <h4>Light Weight</h4>
+                        <p>Entire library is only 9kb.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="feature clearfix">
+                      <div class="pull-left icon"><i class="fa fa-wrench"></i></div>
+                      <div class="pull-left description">
+                        <h4>Highly Customizable</h4>
+                        <p>A good number of customization options to make sure it fits nicely into your project.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="feature clearfix">
+                      <div class="pull-left icon"><i class="fa fa-money"></i></div>
+                      <div class="pull-left description">
+                        <h4>Free to Use</h4>
+                        <p>Open source and free forever.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row row-section row-start" id="getting-started">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h2>Getting Started</h2>
+                <p>It's easy to get started:</p>
+                <ol>
+                  <li>
+                    <h4>Download</h4>
+                    <p>Download the latest build <a href="#">here</a>. Copy the folder <strong>frame-carousel</strong> and put it as it is in a public directory of your project.</p>
+                  </li>
+                  <li>
+                    <h4>Include</h4>
+                    <p>At minimum, you need these files included in your html page:</p>
+                    <pre><code class="html">&lt;!-- Required. You can override default styles in your CSS.--&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/frame-carousel/jquery.frameCarousel.css&quot;&gt;
+
+&lt;!-- Optional. Include it only if you want to support touch gestures.--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;path/to/frame-carousel/jquery.touchSwipe.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Required. --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;path/to/frame-carousel/jquery.frameCarousel.js&quot;&gt;&lt;/script&gt;</code></pre>
+                  </li>
+                  <li>
+                    <h4>Initializing</h4>
+                    <p>We need an element in your HTML page that will host the carousel. It could be as simple as a div:</p>
+                    <pre><code class="html">&lt;div class=&quot;host-element&quot;&gt;&lt;/div&gt;</code></pre>
+                    <p>Now sprinkle some JavaScript:</p>
+                    <pre><code class="javascript">$('.host-element').frameCarousel();</code></pre>
+<p>To learn more about these options, please scroll down to Options section.</p>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="row row-section row-options row-gray" id="options">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h2>Options</h2>
+                <p>Following are available options with default values:</p>
+                <pre><code class="javascript">$('.host-element').frameCarousel({
+  // Enabled/disables debug mode. Debug mode allows you to print
+  // debug messages on top of the frame in cases when console.log/alert aren't
+  // readily available.
+  debug: false,
+
+  // first screen when the plugin intializes. Must be an integer between 0
+  // and image_count - 1, where image_count is total number of images you're
+  // displaying inside the frame.
+  first: 0,
+
+  /*
+  * swipeThreshold -- percentage of screen width
+  * Determines when to intiate a next transition when user
+  * is sliding a screen.
+  *
+  * For example, a value of 10 says that
+  * initiate a move-to-next screen transition, if user has lifted
+  * her finger(s) after having dragged current screen towards left by
+  * a distance of 10% or more.
+  */
+  swipeThreshold: 10,
+
+  /**
+   * Frame image that you'd like to use in the background.
+   * The default value points to a phone frame included within
+   * download package.
+   */
+  frame: 'path/to/frame-carousel/sample/frame.png',
+
+  /**
+   * Width/height of the frame in pixels you'd like to apply in relation to different
+   * screen sizes.
+   *
+   * If this option isn't specified at all, original dimensions of the frame image
+   * will be used for all screen sizes.
+   *
+   * It takes an array of objects, each specifying frame dimensions in relation to a
+   * particular screen width. For a given screen width, the plugin will iterate through
+   * the array, and apply dimensions of the first matching object.
+   *
+   * If width isn't specified, but height is there, width would be calculated
+   * using original image's aspect ratio. Same is true when height isn't specified,
+   * but width is there. If neither height nor width are specified, original dimensions
+   * of the image will be used.
+   *
+   * If width is set as -1, the frame will be removed for screens which match the criteria.
+   */
+  frameSize: [{
+    /**
+     * If width isn't specified, but height is specified, width would be calculated,
+     * using original image's aspect ratio. If both height and width aren't
+     */
+    width: [calculated at runtime],
+    height: [calculated at runtime],
+    minScreenWidth: 768,
+    maxScreenWidth: 1024
+  }],
+
+  /**
+   * Marks bounding box within frame image where images are to be rendered.
+   * All values are in percentages, so remain true no matter what size frame ends
+   * up with.
+   */
+  boundingBox: {
+    left: '4.3%',
+    top: '4.48%',
+    width: '91.4%',
+    height: '61.1%'
+  },
+
+  /**
+   * An array of image links to be rendered within frame. Images don't have to adhere
+   * to any size, but it'll help if their aspect ratio is same as aspect ratio of
+   * boundingBox.
+   */
+  images: ['path/to/frame-carousel/sample/1.jpg',
+    'path/to/frame-carousel/sample/2.jpg',
+    ...
+    'path/to/frame-carousel/sample/10.jpg']
+});</code></pre>
+              </div>
+            </div>
+
+            <div class="row row-section row-funcs" id="funcs">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h2>Functions</h2>
+                <pre><code class="javascript">// Grab the frameCarousel instance from host element
+var frameCarousel = $('.host-element').data('frameCarousel');
+
+// The argument 'options' is optional in all of the following functions.
+// It is a hash/map with following possible properties (and defaults);
+// animate: true (determines if you want transition immediate or with animation)
+
+// goes to next screen. if user is already at last screen,
+// it'll stay intact.
+frameCarousel.next( options );
+
+// goes to previous screen. if user is already at first screen,
+// it'll stay intact.
+frameCarousel.previous( options );
+
+// goes to screen identified by index. stays intact if index
+// is out of bounds.
+frameCarousel.goto( index, options );
+
+// resizes the frame to given 'width' and 'height'. if no argument
+// is passed, it'd resize to original applicable size.
+// if only 'width' is passed, it'd determine 'height' by original
+// aspect ratio. Same is true when only 'height' is passed
+// and not 'width'.
+frameCarousel.resize( options );
+
+// call this if you'd like remove frame image.
+// can be useful on smaller screens.
+frameCarousel.removeFrame();
+
+// Gracefully destructs the instance.
+frameCarousel.destroy();
+
+// if 'debug' mode is enabled (see options), any string passed to this method
+// will be printed over screen. Useful for testing in situations
+// when console.log/alert are not conveniently available.
+frameCarousel.debug( message );</code></pre>
+              </div>
+            </div>
+
+            <div class="row row-section row-events row-gray" id="events">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h2>Events</h2>
+                <pre><code class="javascript">// Grab the frameCarousel instance from host element.
+// Each callback receives a hash/map 'e' with relevant
+// information.
+$('.host-element')
+
+  // triggers when a frameCarousel instance is ready
+  .on('fc-ready', function( e ){
+
+  })
+
+  // triggers when a frameCarousel instance is destroyed
+  .on('fc-destroy', function( e ){
+
+  })
+
+  // triggers when a screen transition begins
+  .on('fc-transition-start', function( e ){
+    // e.from => screen index from where transition begun
+    // e.to   => screen index to where transition has to end
+  })
+
+  // triggers when a screen transition ends
+  .on('fc-transition-end', function( e ){
+    // e.from => screen index from where transition begun
+    // e.to   => screen index to where transition ended
+  });</code></pre>
+              </div>
+            </div>
+
+            <div class="row row-section row-faqs" id="faqs">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h2>FAQs</h2>
+                <ol>
+
+                  <li>
+                    <p class="faq-question">Is it free?</p>
+                    <p class="faq-answer">Yes.</p>
+                  </li>
+
+                  <li>
+                    <p class="faq-question">Can I use it in my commercial project?</p>
+                    <p class="faq-answer">Yes.</p>
+                  </li>
+
+                  <li>
+                    <p class="faq-question">Can I make a feature request?</p>
+                    <p class="faq-answer">Yes. Write to us at <a href="mailto:support@eastros.com">support@eastros.com</a>.</p>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="row row-section row-contact row-gray" id="contact">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h2>Contact</h2>
+                <p>We are a small group of developers trying to make our share of contributions to the world. Did we succeed? Let us know by writing at <a href="mailto:support@eastros.com">support@eastros.com</a></p>
+              </div>
+            </div>
+
+            <div class="row row-section row-subscribe row-pink">
+              <div class="col-lg-6 col-lg-offset-3">
+
+                <!-- Begin MailChimp Signup Form -->
+                <div id="mc_embed_signup">
+                  <form action="//openislamabad.us9.list-manage.com/subscribe/post?u=981180f3fc01ec72bfda1e9d6&amp;id=7f07bd7651" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div id="mc_embed_signup_scroll">
+                      <!--
+                    	<h2>Subscribe to our mailing list</h2>
+
+                      <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+                      -->
+                      <h2>Did you like Frame Carousel?</h2>
+                      <p>Subscribe to our mailing list to get alerts about our future similar projects.</p>
+
+                      <div class="mc-field-group form-group">
+                        <!--
+                      	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+                        -->
+                        </label>
+                      	<input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Email address">
+                      </div>
+                    	<div id="mce-responses" class="clear">
+                    		<div class="response" id="mce-error-response" style="display:none"></div>
+                    		<div class="response" id="mce-success-response" style="display:none"></div>
+                    	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                      <div style="position: absolute; left: -5000px;"><input type="text" name="b_981180f3fc01ec72bfda1e9d6_7f07bd7651" tabindex="-1" value=""></div>
+                      <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-primary"></div>
+
+                      <p style="margin-top: 10px;">We will not spam you, pinky promise!</p>
+                    </div>
+                  </form>
+                </div>
+
+                <!--End mc_embed_signup-->
+
+              </div>
+            </div>
+
+            <div class="row row-section row-footer">
+              <div class="col-lg-8 col-lg-offset-2">
+                <p>&copy; 2015 - Developed by folks at <a href="http://www.eastros.com" target="_blank">Eastros</a></p>
+              </div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="assets/vendor/less.min.js" type="text/javascript"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/vendor/jquery.touchSwipe.min.js"></script>
+        <script src="assets/vendor/frame-carousel/jquery.frame-carousel.min.js"></script>
+        <script src="assets/vendor/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <script src="assets/js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>

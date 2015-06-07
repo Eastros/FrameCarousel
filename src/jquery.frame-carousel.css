@@ -1,0 +1,222 @@
+.fc {
+  position: relative;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  width: 300px;
+  height: 400px;
+
+  display: inline-block;
+  margin-bottom: 80px;
+}
+
+.fc-frame {
+  margin: 0 auto;
+}
+
+.fc-image-mask {
+  background: #fff;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.fc-film {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.fc-film:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.fc-image-masked {
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  float: left
+}
+
+.fc-controls {
+  top: 50%;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  z-index: 10;
+}
+
+.fc-btn {
+  color: #aaa;
+  height: 40px;
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  position: absolute;
+  width: 40px;
+  line-height: 0.3;
+  font-size: 40px;
+}
+
+.fc-btn:hover, .fc-btn:focus, .fc-btn:active, .fc-btn.active {
+  text-decoration: none;
+  color: #999;
+  border: 1px solid #aaa;
+}
+
+.fc-btn.disabled {
+  border: 1px solid #eee;
+  color: #eee;
+  pointer-events: none;
+}
+
+.fc-btn.fc-btn-left {
+  left: -60px;
+}
+
+.fc-btn.fc-btn-left:before {
+  right: 16px;
+  top: 10px;
+  position: absolute;
+  display: block;
+  content: " ";
+  border: 9px solid;
+  width: 0;
+  height: 0;
+  /* line-height: normal; */
+  border-color: transparent #aaa transparent transparent;
+}
+
+.fc-btn.fc-btn-left:hover:before,
+.fc-btn.fc-btn-left:focus:before,
+.fc-btn.fc-btn-left:active:before,
+.fc-btn.fc-btn-left.active:before {
+  border-color: transparent #999 transparent transparent;
+}
+
+.fc-btn.disabled.fc-btn-left:before {
+  border-color: transparent #eee transparent transparent;
+}
+
+.fc-btn.fc-btn-right {
+  right: -60px;
+}
+
+.fc-btn.fc-btn-right:before {
+  left: 16px;
+  top: 10px;
+  position: absolute;
+  display: block;
+  content: " ";
+  border: 9px solid;
+  width: 0;
+  height: 0;
+  /* line-height: normal; */
+  border-color: transparent transparent transparent #aaa;
+}
+
+.fc-btn.fc-btn-right:hover:before,
+.fc-btn.fc-btn-right:focus:before,
+.fc-btn.fc-btn-right:active:before,
+.fc-btn.fc-btn-right.active:before {
+  border-color: transparent transparent transparent #999;
+}
+
+.fc-btn.disabled.fc-btn-right:before {
+  border-color: transparent transparent transparent #eee;
+}
+
+.fc-pagination {
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+  bottom: -60px;
+  position: absolute;
+}
+
+.fc-pagination-inner {
+  margin: 0 auto;
+  display: inline-block;  
+}
+
+.fc-pagination-inner:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.fc-pagination a {
+  color: #ccc;
+  position: relative;
+  float: left;
+  display: block;
+  margin-right: 10px;
+  width: 14px;
+  height: 14px;
+}
+
+.fc-pagination a:before {
+  position: absolute;
+  content: ' ';
+  display: block;
+  width: 2px;
+  height: 2px;
+  border: 7px solid #aaa;
+  border-radius: 7px;
+  top: 0;
+  left: 0;
+}
+
+.fc-pagination a:after {
+  position: absolute;
+  content: ' ';
+  display: block;
+  width: 2px;
+  height: 2px;
+  border: 6px solid #fff;
+  border-radius: 6px;
+  top: 1px;
+  left: 1px;
+}
+
+.fc-pagination a:hover:after,
+.fc-pagination a:focus:after,
+.fc-pagination a:active:after,
+.fc-pagination a.active:after {
+  border: 6px solid #aaa;
+}
+
+.fc-pagination a:hover,
+.fc-pagination a:focus,
+.fc-pagination a:active,
+.fc-pagination a.active {
+  color: #999;
+  text-decoration: none;
+}
+
+.fc-animate {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+}
+
+.fc-debug:after {
+  content: attr(data-debug);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: red;
+  background: white;
+
+}
