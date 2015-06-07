@@ -217,6 +217,12 @@ textarea {
     page-break-after: avoid;
   }
 }
+.strong {
+  font-weight: 400;
+}
+strong {
+  font-weight: 400;
+}
 body {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
@@ -340,6 +346,9 @@ a:hover {
 }
 .feature .description {
   width: 70%;
+}
+.faq-question {
+  font-weight: 400;
 }
 .navbar-default {
   background: #fff;

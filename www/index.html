@@ -86,7 +86,7 @@
 
               <div class="col-lg-8 col-lg-offset-2">
                 <div class="download"><a href="https://github.com/Eastros/FrameCarousel/archive/master.zip" class="btn btn-primary btn-lg">Download</a><br/>
-                  <a href="https://github.com/Eastros/FrameCarousel" class="btn-view-github"><i class="fa fa-github"></i> View on GitHub</a>&nbsp;&nbsp;&nbsp;<a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a></div>
+                  <a href="https://github.com/Eastros/FrameCarousel" class="btn-view-github"><i class="fa fa-github"></i> View on GitHub</a></div>
               </div>
             </div>
 
@@ -166,19 +166,19 @@
                 <ol>
                   <li>
                     <h4>Download</h4>
-                    <p>Download the latest build <a href="#">here</a>. Copy the folder <strong>frame-carousel</strong> and put it as it is in a public directory of your project.</p>
+                    <p>Download latest build <a href="https://github.com/Eastros/FrameCarousel/archive/master.zip">here</a>. Copy the folder <strong>dist</strong> and put it in a public directory of your project. Rename it to <strong>frame-carousel</strong></p>
                   </li>
                   <li>
                     <h4>Include</h4>
                     <p>At minimum, you need these files included in your html page:</p>
                     <pre><code class="html">&lt;!-- Required. You can override default styles in your CSS.--&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/frame-carousel/jquery.frameCarousel.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/frame-carousel/jquery.frame-carousel.min.css&quot;&gt;
 
-&lt;!-- Optional. Include it only if you want to support touch gestures.--&gt;
+&lt;!-- Optional. Include it only if you want to support touch gestures. Find it in 'libs' directory. --&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;path/to/frame-carousel/jquery.touchSwipe.min.js&quot;&gt;&lt;/script&gt;
 
 &lt;!-- Required. --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;path/to/frame-carousel/jquery.frameCarousel.js&quot;&gt;&lt;/script&gt;</code></pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;path/to/frame-carousel/jquery.frame-carousel.min.js&quot;&gt;&lt;/script&gt;</code></pre>
                   </li>
                   <li>
                     <h4>Initializing</h4>
@@ -361,6 +361,22 @@ $('.host-element')
                 <ol>
 
                   <li>
+                    <p class="faq-question">Why did you make another carousel?</p>
+                    <p class="faq-answer">We wanted to make a carousel optimized for rendering sliders inside frame images. Two things were hard to do with existing carousels:
+                      <ol>
+                        <li>
+                          <p><strong>Uniform Resizing of Images</strong></p>
+                          <p>In one of our projects, we had to generate web pages with carousels within frames at runtime. We had to show user provided images, in uniform sizes, inside the carousel which originally could be different in sizes.</p>
+                        </li>
+                        <li>
+                          <p><strong>Responsiveness</strong></p>
+                          <p>On different screens, we wanted to resize the carousel accordingly, without ruining its placement position on the frame.</p>
+                        </li>
+                      </ol>
+                    </p>
+                  </li>
+
+                  <li>
                     <p class="faq-question">Is it free?</p>
                     <p class="faq-answer">Yes.</p>
                   </li>
@@ -426,7 +442,10 @@ $('.host-element')
 
             <div class="row row-section row-footer">
               <div class="col-lg-8 col-lg-offset-2">
-                <p>&copy; 2015 - Developed by folks at <a href="http://www.eastros.com" target="_blank">Eastros</a></p>
+                <div class="clearfix">
+                  <p class="pull-left">&copy; 2015 - Developed by folks at <a href="http://www.eastros.com" target="_blank">Eastros</a></p>
+                  <p class="pull-right"><a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a></p>
+                </div>
               </div>
             </div>
         </div>
