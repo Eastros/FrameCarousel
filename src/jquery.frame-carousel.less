@@ -1,9 +1,13 @@
 /*! Frame Carousel - v0.1.0 - 2015-06-08
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
-/*! Frame Carousel - v0.1.0 - 2015-06-08
-* http://www.eastros.com/frame-carousel/
-* Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
+
+
+@btn-primary-color: #666;
+@btn-opacity-normal: 0.7;
+@btn-opacity-active: 1;
+@btn-opacity-disabled: 0.4;
+
 .fc {
   position: relative;
   text-align: center;
@@ -61,26 +65,25 @@
   }
 
   .fc-btn {
-    color: #aaa;
+    color: @btn-primary-color;
     height: 40px;
     border-radius: 20px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid @btn-primary-color;
     position: absolute;
     width: 40px;
     line-height: 0.3;
     font-size: 40px;
+    opacity: @btn-opacity-normal;
 
     &:hover, &:focus, &:active, &.active {
       text-decoration: none;
-      color: #999;
-      border: 1px solid #aaa;
+      opacity: @btn-opacity-active;
     }
 
     &.disabled {
-      border: 1px solid #eee;
-      color: #eee;
       pointer-events: none;
+      opacity: @btn-opacity-disabled;
     }
 
     &.fc-btn-left {
@@ -96,18 +99,7 @@
         width: 0;
         height: 0;
         /* line-height: normal; */
-        border-color: transparent #aaa transparent transparent;
-      }
-
-      &:hover:before,
-      &:focus:before,
-      &:active:before,
-      &.active:before {
-        border-color: transparent #999 transparent transparent;
-      }
-
-      &.disabled:before {
-        border-color: transparent #eee transparent transparent;
+        border-color: transparent @btn-primary-color transparent transparent;
       }
     }
 
@@ -124,18 +116,7 @@
         width: 0;
         height: 0;
         /* line-height: normal; */
-        border-color: transparent transparent transparent #aaa;
-      }
-
-      &:hover:before,
-      &:focus:before,
-      &:active:before,
-      &.active:before {
-        border-color: transparent transparent transparent #999;
-      }
-
-      &.disabled:before {
-        border-color: transparent transparent transparent #eee;
+        border-color: transparent transparent transparent @btn-primary-color;
       }
     }
   }
@@ -162,47 +143,36 @@
       }
 
       a {
-        color: #ccc;
+        color: @btn-primary-color;
         position: relative;
         float: left;
         display: block;
         margin-right: 10px;
         width: 14px;
         height: 14px;
+        opacity: @btn-opacity-normal;
 
         &:before {
           position: absolute;
           content: ' ';
           display: block;
-          width: 2px;
-          height: 2px;
-          border: 7px solid #aaa;
-          border-radius: 7px;
+          width: 12px;
+          height: 12px;
+          border: 1px solid @btn-primary-color;
+          border-radius: 6px;
           top: 0;
           left: 0;
-        }
-
-        &:after {
-          position: absolute;
-          content: ' ';
-          display: block;
-          width: 2px;
-          height: 2px;
-          border: 6px solid #fff;
-          border-radius: 6px;
-          top: 1px;
-          left: 1px;
         }
 
         &:hover,
         &:focus,
         &:active,
         &.active {
-          color: #999;
           text-decoration: none;
+          opacity: @btn-opacity-active;
 
-          &:after {
-            border: 6px solid #aaa;
+          &:before {
+            background-color: @btn-primary-color;        
           }
         }
       }
