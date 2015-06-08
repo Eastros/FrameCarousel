@@ -1,6 +1,6 @@
 # Frame Carousel
 
-A jQuery plugin to create carousels within frames
+A jQuery plugin to create carousels within frames. Click/tap [here](http://www.eastros.com/frame-carousel/) for demo.
 
 ## Getting Started
 DOWNLOAD
