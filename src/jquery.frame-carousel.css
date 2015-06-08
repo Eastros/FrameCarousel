@@ -1,6 +1,9 @@
 /*! Frame Carousel - v0.1.0 - 2015-06-08
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
+/*! Frame Carousel - v0.1.0 - 2015-06-08
+* http://www.eastros.com/frame-carousel/
+* Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
 .fc {
   position: relative;
   text-align: center;
@@ -222,15 +225,4 @@
   left: 0;
   color: red;
   background: white;
-}
-
-.fc-drag-shield {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #f00;
-  top: 0;
-  left: 0;
-  z-index: 1040;
-  opacity: 0;
 }

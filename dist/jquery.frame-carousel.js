@@ -4,6 +4,9 @@
 /*! Frame Carousel - v0.1.0 - 2015-06-08
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
+/*! Frame Carousel - v0.1.0 - 2015-06-08
+* http://www.eastros.com/frame-carousel/
+* Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
 (function($) {
 
   var
@@ -21,9 +24,11 @@
       '</div>',
 
     events = {
-      mousedown: 'ontouchstart mousedown',
-      mousemove: 'ontouchmove mousemove',
-      mouseup: 'ontouchend mouseup',
+      touchstart: 'touchstart mousedown',
+      touchmove: 'touchmove mousemove',
+      touchend: 'touchend mouseup',
+      touchcancel: 'touchcancel',
+      touchleave: 'touchleave mouseout',
       transitionend: 'transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd'
     },
 
@@ -59,13 +64,19 @@
       return d;
     },
 
-    getPosition = function( event ) {
-      var r;
+    getPosition = function( e ) {
+      var event = e.originalEvent || e,
+        r;
 
       if ( event.touches && event.touches.length ) {
         r = {
           x: event.touches[0].pageX,
           y: event.touches[0].pageY
+        };
+      } else if ( event.changedTouches && event.changedTouches.length ) {
+        r = {
+          x: event.changedTouches[0].pageX,
+          y: event.changedTouches[0].pageY
         };
       } else if ( event.pageX !== undefined ) {
         r = {
@@ -183,50 +194,9 @@
           this.attributes = $.extend(this.attributes, {
             originalFrameSize: ofs,
             current: 0,
+            id: (new Date()).getTime()
           });
         }, this));
-    },
-
-    addDragShield = function() {
-      if ( !this.elements.$dragShield ) {
-        this.elements.$dragShield = $('<div/>')
-          .addClass('fc-drag-shield')
-          .on(events.mousemove, $.proxy(onSwipeMove, this))
-          .on(events.mouseup, $.proxy(onSwipeEnd, this))
-
-          /*
-          .swipe({
-            swipeStatus:$.proxy(function(event, phase) {
-
-              if(phase===$.fn.swipe.phases.PHASE_MOVE) {
-                onSwipeMove.call(this, event);
-              }
-
-              else if ( phase===$.fn.swipe.phases.PHASE_END ) {
-                onSwipeEnd.call(this, event);
-              }
-
-              else if ( phase===$.fn.swipe.phases.PHASE_CANCEL ) {
-                onSwipeCancel.call(this, event);
-              }
-
-            }, this),
-            threshold:0,
-            fingers:'all'
-          })
-          */
-
-          .appendTo('body');
-      }
-    },
-
-    removeDragShield = function() {
-      var $e = this.elements.$dragShield;
-
-      if ( $e ) {
-        $e.remove();
-        delete this.elements.$dragShield;
-      }
     },
 
     onClickGoLeft = function() {
@@ -240,9 +210,6 @@
     },
 
     onSwipeBegin = function(event) {
-      // console.log('[onSwipeBegin] invoked');
-      // window.fc = this;
-
       var p = getPosition(event),
         sw = this.elements.$mask.width(),
         sc = this.elements.$images.length,
@@ -255,14 +222,17 @@
         screenCount: sc,
         screenWidthAsPercentageOfFilm: sp,
         screenOffset: so,
-        thresholdAsPercentageOfFilm: this.options.swipeThreshold / 100 * sp
+        thresholdAsPercentageOfFilm: this.options.swipeThreshold / 100 * sp,
+        hasTouchStarted: true
       });
 
-      addDragShield.call(this);
+      return false;
     },
 
     onSwipeMove = function(event) {
-      // console.log('[onSwipeMove] invoked');
+      if ( !this.attributes.hasTouchStarted ) {
+        return false;
+      }
 
       var p = getPosition(event);
 
@@ -290,14 +260,17 @@
         distance: this.attributes.swipeCompoundDisplacement.x
       });
 
-      // console.log('swipeDisplacement: '+this.attributes.swipeDisplacement.x+', thresholdAsPercentageOfFilm: '+this.attributes.thresholdAsPercentageOfFilm);
+      return false;
     },
 
     onSwipeEnd = function() {
+      if ( !this.attributes.hasTouchStarted ) {
+        return false;
+      }
 
+      delete this.attributes.hasTouchStarted;
 
       var screensToMove = Math.abs ( Math.ceil( this.attributes.swipeDisplacement.x / this.attributes.screenWidthAsPercentageOfFilm ) );
-      // console.log('[onSwipeEnd] screensToMove: '+screensToMove);
 
       // if distance is past certain threshold, go to next screen
       // otherwise return to this screen
@@ -312,15 +285,15 @@
         this.goto(this.attributes.current);
       }
 
-      removeDragShield.call(this);
+      return false;
     },
 
-    /*
     onSwipeCancel = function() {
+      delete this.attributes.hasTouchStarted;
+
       // return to this screen
       this.goto(this.attributes.current);
     },
-    */
 
     onAnimationComplete = function() {
       // alert('Animation complete')
@@ -352,6 +325,7 @@
 
       this.$el
         .fcAddClass('fc')
+        .fcAddClass('fc-'+this.attributes.id)
         .css({
           'background-image': 'url(\''+this.options.frame+'\')'
         })
@@ -378,8 +352,8 @@
 
       // add mask element
       this.elements.$mask
-            .css( this.options.boundingBox )
-            .on(events.mousedown, $.proxy(onSwipeBegin, this));
+            .css( this.options.boundingBox );
+          //  .on(events.mousedown, $.proxy(onSwipeBegin, this));
 
             /*
             .swipe({
@@ -403,6 +377,15 @@
               fingers:'all'
             });
             */
+
+      var eventTarget = '.fc-' + this.attributes.id + ' .fc-image-mask';
+
+      $('body')
+        .on(events.touchstart, eventTarget, $.proxy(onSwipeBegin, this))
+        .on(events.touchmove, eventTarget, $.proxy(onSwipeMove, this))
+        .on(events.touchend, eventTarget, $.proxy(onSwipeEnd, this))
+        .on(events.touchcancel, eventTarget, $.proxy(onSwipeCancel, this))
+        .on(events.touchleave, eventTarget, $.proxy(onSwipeEnd, this));
 
       this.elements.$film
             .css({
