@@ -14,7 +14,7 @@
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-        <link href="assets/vendor/frame-carousel/jquery.frame-carousel.min.css" rel="stylesheet">
+        <link href="assets/vendor/frame-carousel/jquery.frame-carousel.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/vendor/highlight/styles/default.css">
 
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -171,13 +171,9 @@
                   <li>
                     <h4>Include</h4>
                     <p>At minimum, you need these files included in your html page:</p>
-                    <pre><code class="html">&lt;!-- Required. You can override default styles in your CSS.--&gt;
+                    <pre><code class="html">&lt;!-- You can override default styles in your CSS.--&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/frame-carousel/jquery.frame-carousel.min.css&quot;&gt;
 
-&lt;!-- Optional. Include it only if you want to support touch gestures. Find it in 'libs' directory. --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;path/to/frame-carousel/jquery.touchSwipe.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;!-- Required. --&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;path/to/frame-carousel/jquery.frame-carousel.min.js&quot;&gt;&lt;/script&gt;</code></pre>
                   </li>
                   <li>
@@ -453,8 +449,15 @@ $('.host-element')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="assets/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/vendor/jquery.touchSwipe.min.js"></script>
+
+        <!-- Production -->
+        <!--
         <script src="assets/vendor/frame-carousel/jquery.frame-carousel.min.js"></script>
+        -->
+
+        <!-- Development -->
+        <script src="assets/vendor/frame-carousel/jquery.frame-carousel.js"></script>
+
         <script src="assets/vendor/highlight/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
 

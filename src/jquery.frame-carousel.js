@@ -1,11 +1,6 @@
-/*
- * frame-carousel
- * http://www.eastros.com/frame-carousel/
- *
- * Copyright (c) 2015 Umar Ashfaq
- * Licensed under the MIT license.
- */
-
+/*! Frame Carousel - v0.1.0 - 2015-06-08
+* http://www.eastros.com/frame-carousel/
+* Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
 (function($) {
 
   var
@@ -21,6 +16,13 @@
       '<div class=\'fc-image-mask\'>'+
       '<div class=\'fc-film\'></div>'+
       '</div>',
+
+    events = {
+      mousedown: 'ontouchstart mousedown',
+      mousemove: 'ontouchmove mousemove',
+      mouseup: 'ontouchend mouseup',
+      transitionend: 'transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd'
+    },
 
     /*
     getPercentage = function($el, property) {
@@ -52,6 +54,29 @@
       $('#tempImg').remove(); //remove from DOM
 
       return d;
+    },
+
+    getPosition = function( event ) {
+      var r;
+
+      if ( event.touches && event.touches.length ) {
+        r = {
+          x: event.touches[0].pageX,
+          y: event.touches[0].pageY
+        };
+      } else if ( event.pageX !== undefined ) {
+        r = {
+          x: event.pageX,
+          y: event.pageY
+        };
+      } else {
+        r = {
+          x: event.clientX,
+          y: event.clientY
+        };
+      }
+
+      return r;
     },
 
     getValidFrameSize = function() {
@@ -159,6 +184,48 @@
         }, this));
     },
 
+    addDragShield = function() {
+      if ( !this.elements.$dragShield ) {
+        this.elements.$dragShield = $('<div/>')
+          .addClass('fc-drag-shield')
+          .on(events.mousemove, $.proxy(onSwipeMove, this))
+          .on(events.mouseup, $.proxy(onSwipeEnd, this))
+
+          /*
+          .swipe({
+            swipeStatus:$.proxy(function(event, phase) {
+
+              if(phase===$.fn.swipe.phases.PHASE_MOVE) {
+                onSwipeMove.call(this, event);
+              }
+
+              else if ( phase===$.fn.swipe.phases.PHASE_END ) {
+                onSwipeEnd.call(this, event);
+              }
+
+              else if ( phase===$.fn.swipe.phases.PHASE_CANCEL ) {
+                onSwipeCancel.call(this, event);
+              }
+
+            }, this),
+            threshold:0,
+            fingers:'all'
+          })
+          */
+
+          .appendTo('body');
+      }
+    },
+
+    removeDragShield = function() {
+      var $e = this.elements.$dragShield;
+
+      if ( $e ) {
+        $e.remove();
+        delete this.elements.$dragShield;
+      }
+    },
+
     onClickGoLeft = function() {
       this.goto(this.attributes.current - 1);
       return false;
@@ -171,11 +238,9 @@
 
     onSwipeBegin = function(event) {
       // console.log('[onSwipeBegin] invoked');
+      // window.fc = this;
 
-      var p = {
-          x: event.pageX,
-          y: event.pageY
-        },
+      var p = getPosition(event),
         sw = this.elements.$mask.width(),
         sc = this.elements.$images.length,
         sp = 100 / sc,
@@ -186,15 +251,21 @@
         screenWidth: sw,
         screenCount: sc,
         screenWidthAsPercentageOfFilm: sp,
-        screenOffset: so
+        screenOffset: so,
+        thresholdAsPercentageOfFilm: this.options.swipeThreshold / 100 * sp
       });
+
+      addDragShield.call(this);
     },
 
     onSwipeMove = function(event) {
+      // console.log('[onSwipeMove] invoked');
+
+      var p = getPosition(event);
 
       this.attributes.swipeDisplacement = {
-          x: (this.attributes.swipeStartPosition.x - event.pageX) / this.attributes.screenWidth * this.attributes.screenWidthAsPercentageOfFilm,
-          y: this.attributes.swipeStartPosition.y - event.pageY
+          x: (this.attributes.swipeStartPosition.x - p.x) / this.attributes.screenWidth * this.attributes.screenWidthAsPercentageOfFilm,
+          y: this.attributes.swipeStartPosition.y - p.y
         };
 
       this.attributes.swipeCompoundDisplacement = {
@@ -215,30 +286,38 @@
         updateStates: false,
         distance: this.attributes.swipeCompoundDisplacement.x
       });
+
+      // console.log('swipeDisplacement: '+this.attributes.swipeDisplacement.x+', thresholdAsPercentageOfFilm: '+this.attributes.thresholdAsPercentageOfFilm);
     },
 
     onSwipeEnd = function() {
 
-      this.attributes.thresholdAsPercentageOfFilm = this.options.swipeThreshold / 100 * this.attributes.screenWidthAsPercentageOfFilm;
+
+      var screensToMove = Math.abs ( Math.ceil( this.attributes.swipeDisplacement.x / this.attributes.screenWidthAsPercentageOfFilm ) );
+      // console.log('[onSwipeEnd] screensToMove: '+screensToMove);
 
       // if distance is past certain threshold, go to next screen
       // otherwise return to this screen
 
       if ( Math.abs(this.attributes.swipeDisplacement.x) > this.attributes.thresholdAsPercentageOfFilm ) {
         if ( this.attributes.swipeDisplacement.x < 0 ) {
-          this.goto(this.attributes.current - 1);
+          this.goto(this.attributes.current - screensToMove -1);
         } else {
-          this.goto(this.attributes.current + 1);
+          this.goto(this.attributes.current + screensToMove);
         }
       } else {
         this.goto(this.attributes.current);
       }
+
+      removeDragShield.call(this);
     },
 
+    /*
     onSwipeCancel = function() {
       // return to this screen
       this.goto(this.attributes.current);
     },
+    */
 
     onAnimationComplete = function() {
       // alert('Animation complete')
@@ -297,11 +376,15 @@
       // add mask element
       this.elements.$mask
             .css( this.options.boundingBox )
+            .on(events.mousedown, $.proxy(onSwipeBegin, this));
+
+            /*
             .swipe({
               swipeStatus:$.proxy(function(event, phase) {
                 if(phase===$.fn.swipe.phases.PHASE_START) {
                   onSwipeBegin.call(this, event);
                 }
+                /*
                 else if(phase===$.fn.swipe.phases.PHASE_MOVE) {
                   onSwipeMove.call(this, event);
                 }
@@ -311,18 +394,18 @@
                 else if ( phase===$.fn.swipe.phases.PHASE_CANCEL ) {
                   onSwipeCancel.call(this, event);
                 }
-              }, this),
-              swipe:$.proxy(function() {
+                *//*
               }, this),
               threshold:0,
               fingers:'all'
             });
+            */
 
       this.elements.$film
             .css({
               width: this.options.images.length * 100 + '%'
             })
-            .on("transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd", $.proxy(onAnimationComplete, this));
+            .on(events.transitionend, $.proxy(onAnimationComplete, this));
 
       // add screenshots
       $.each(this.options.images, $.proxy(function( index, image ){
