@@ -99,7 +99,7 @@
         width: 0;
         height: 0;
         /* line-height: normal; */
-        border-color: transparent @btn-primary-color transparent transparent;
+        border-color: transparent @btn-primary-color transparent transparent !important;
       }
     }
 
@@ -116,7 +116,7 @@
         width: 0;
         height: 0;
         /* line-height: normal; */
-        border-color: transparent transparent transparent @btn-primary-color;
+        border-color: transparent transparent transparent @btn-primary-color !important;
       }
     }
   }
@@ -148,6 +148,7 @@
         float: left;
         display: block;
         margin-right: 10px;
+        margin-bottom: 10px;
         width: 14px;
         height: 14px;
         opacity: @btn-opacity-normal;
@@ -172,7 +173,7 @@
           opacity: @btn-opacity-active;
 
           &:before {
-            background-color: @btn-primary-color;        
+            background-color: @btn-primary-color;
           }
         }
       }

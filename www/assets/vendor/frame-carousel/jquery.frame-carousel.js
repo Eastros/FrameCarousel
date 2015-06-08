@@ -4,9 +4,7 @@
 /*! Frame Carousel - v0.1.0 - 2015-06-08
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
-/*! Frame Carousel - v0.1.0 - 2015-06-08
-* http://www.eastros.com/frame-carousel/
-* Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
+
 (function($) {
 
   var

@@ -85,7 +85,7 @@
   width: 0;
   height: 0;
   /* line-height: normal; */
-  border-color: transparent #666666 transparent transparent;
+  border-color: transparent #666666 transparent transparent !important;
 }
 .fc .fc-btn.fc-btn-right {
   right: -60px;
@@ -100,7 +100,7 @@
   width: 0;
   height: 0;
   /* line-height: normal; */
-  border-color: transparent transparent transparent #666666;
+  border-color: transparent transparent transparent #666666 !important;
 }
 .fc .fc-pagination {
   font-size: 40px;
@@ -127,6 +127,7 @@
   float: left;
   display: block;
   margin-right: 10px;
+  margin-bottom: 10px;
   width: 14px;
   height: 14px;
   opacity: 0.7;
