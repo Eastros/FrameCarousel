@@ -23,10 +23,6 @@ module.exports = function(grunt) {
       js: {
         src: ['src/jquery.<%= pkg.name %>.js'],
         dest: 'dist/jquery.<%= pkg.name %>.js'
-      },
-      css: {
-        src: ['src/jquery.<%= pkg.name %>.css'],
-        dest: 'dist/jquery.<%= pkg.name %>.css'
       }
     },
     uglify: {
@@ -43,7 +39,7 @@ module.exports = function(grunt) {
         banner: '<%= banner %>'
       },
       css: {
-        src: '<%= concat.css.dest %>',
+        src: 'dist/jquery.<%= pkg.name %>.css',
         dest: 'dist/jquery.<%= pkg.name %>.min.css'
       }
     },
@@ -67,6 +63,10 @@ module.exports = function(grunt) {
       www: {
         src: 'www/assets/css/main.less',
         dest: 'www/assets/css/main.css'
+      },
+      core: {
+        src: 'src/jquery.<%= pkg.name %>.less',
+        dest: 'dist/jquery.<%= pkg.name %>.css'
       }
     },
     qunit: {
@@ -84,7 +84,7 @@ module.exports = function(grunt) {
       },
       test: {
         src: ['test/**/*.js']
-      },
+      }
     },
     watch: {
       gruntfile: {
@@ -114,6 +114,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'concat', 'uglify', 'cssmin', 'copy:sample', 'copy:www_dist', 'less']);
+  grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'concat', 'uglify', 'less:core', 'cssmin', 'copy:sample', 'copy:www_dist', 'less:www']);
 
 };

@@ -1,4 +1,4 @@
-/*! Frame Carousel - v0.1.0 - 2015-06-08
+/*! Frame Carousel - v0.1.0 - 2015-06-09
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
 /*! Frame Carousel - v0.1.0 - 2015-06-08
@@ -516,6 +516,21 @@
 
       // this.$el.attr('data-debug', this.$film.css('transition'));
       // console.log('[goto] current_screen: '+this._current);
+    },
+    next: function() {
+
+    },
+    previous: function() {
+
+    },
+    resize: function() {
+
+    },
+    removeFrame: function() {
+
+    },
+    destroy: function() {
+
     }
   });
 
