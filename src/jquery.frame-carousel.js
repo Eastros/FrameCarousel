@@ -513,6 +513,21 @@
 
       // this.$el.attr('data-debug', this.$film.css('transition'));
       // console.log('[goto] current_screen: '+this._current);
+    },
+    next: function() {
+
+    },
+    previous: function() {
+
+    },
+    resize: function() {
+
+    },
+    removeFrame: function() {
+
+    },
+    destroy: function() {
+
     }
   });
 
