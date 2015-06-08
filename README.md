@@ -3,11 +3,12 @@
 A jQuery plugin to create carousels within frames. Click/tap [here](http://www.eastros.com/frame-carousel/) for demo.
 
 ## Getting Started
-DOWNLOAD
+
+### Download
 
 Download latest build [here](https://github.com/Eastros/FrameCarousel/archive/master.zip). Copy the folder `dist` and put it in a public directory of your project. Rename it to `frame-carousel`.
 
-INCLUDE
+### Include
 
 At minimum, you need these files included in your html page:
 ```html
@@ -17,7 +18,7 @@ At minimum, you need these files included in your html page:
 <script type="text/javascript" src="path/to/frame-carousel/jquery.frame-carousel.min.js"></script>
 ```
 
-INITIALIZE
+### Initialize
 
 We need an element in your HTML page that will host the carousel. It could be as simple as a div:
 ```html
