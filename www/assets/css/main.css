@@ -322,6 +322,7 @@ a:hover {
   /* text-transform: uppercase; */
   color: #888;
   display: inline-block;
+  margin-right: 10px;
 }
 .hljs {
   background: transparent;

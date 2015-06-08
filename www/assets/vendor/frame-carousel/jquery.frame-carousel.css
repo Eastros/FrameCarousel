@@ -43,6 +43,7 @@
 }
 
 .fc-image-masked {
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
@@ -147,7 +148,7 @@
 
 .fc-pagination-inner {
   margin: 0 auto;
-  display: inline-block;  
+  display: inline-block;
 }
 
 .fc-pagination-inner:after {
