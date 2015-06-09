@@ -8,6 +8,9 @@
 @btn-opacity-active: 1;
 @btn-opacity-disabled: 0.4;
 
+@btn-control-diameter: 40px;
+@btn-pagination-diameter: 12px;
+
 .fc {
   position: relative;
   text-align: center;
@@ -18,6 +21,7 @@
   height: 400px;
 
   display: inline-block;
+  margin: 60px;
   margin-bottom: 80px;
 
   .fc-frame {
@@ -66,12 +70,14 @@
 
   .fc-btn {
     color: @btn-primary-color;
-    height: 40px;
-    border-radius: 20px;
+    width: @btn-control-diameter;
+    height: @btn-control-diameter;
+    border-radius: @btn-control-diameter / 2;
     padding: 10px;
     border: 1px solid @btn-primary-color;
     position: absolute;
-    width: 40px;
+    box-sizing: border-box;
+
     line-height: 0.3;
     font-size: 40px;
     opacity: @btn-opacity-normal;
@@ -152,15 +158,17 @@
         width: 14px;
         height: 14px;
         opacity: @btn-opacity-normal;
+        text-decoration: none;
 
         &:before {
           position: absolute;
           content: ' ';
           display: block;
-          width: 12px;
-          height: 12px;
+          width: @btn-pagination-diameter;
+          height: @btn-pagination-diameter;
           border: 1px solid @btn-primary-color;
-          border-radius: 6px;
+          border-radius: @btn-pagination-diameter / 2;
+          box-sizing: border-box;
           top: 0;
           left: 0;
         }
