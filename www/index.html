@@ -182,7 +182,7 @@
                     <pre><code class="html">&lt;div class=&quot;host-element&quot;&gt;&lt;/div&gt;</code></pre>
                     <p>Now sprinkle some JavaScript:</p>
                     <pre><code class="javascript">$('.host-element').frameCarousel();</code></pre>
-<p>To learn more about these options, please scroll down to Options section.</p>
+<p>If the plugin is initialized without any parameter, default options will be used. If you want to tweak some setting, use following Options.</p>
                   </li>
                 </ol>
               </div>
@@ -193,19 +193,20 @@
                 <h2>Options</h2>
                 <p>Following are available options with default values:</p>
                 <pre><code class="javascript">$('.host-element').frameCarousel({
-  // Enabled/disables debug mode. Debug mode allows you to print
+  // Enable/disable debug mode. Debug mode allows you to print
   // debug messages on top of the frame in cases when console.log/alert aren't
   // readily available.
   debug: false,
 
-  // first screen when the plugin intializes. Must be an integer between 0
+  // First screen when the plugin intializes. Must be an integer between 0
   // and image_count - 1, where image_count is total number of images you're
   // displaying inside the frame.
   first: 0,
 
   /*
   * swipeThreshold -- percentage of screen width
-  * Determines when to intiate a next transition when user
+  *
+  * Determines when to initiate a next transition when user
   * is sliding a screen.
   *
   * For example, a value of 10 says that
@@ -218,7 +219,7 @@
   /**
    * Frame image that you'd like to use in the background.
    * The default value points to a phone frame included within
-   * download package.
+   * dist/sample directory.
    */
   frame: 'path/to/frame-carousel/sample/frame.png',
 
@@ -241,10 +242,6 @@
    * If width is set as -1, the frame will be removed for screens which match the criteria.
    */
   frameSize: [{
-    /**
-     * If width isn't specified, but height is specified, width would be calculated,
-     * using original image's aspect ratio. If both height and width aren't
-     */
     width: [calculated at runtime],
     height: [calculated at runtime],
     minScreenWidth: 768,
@@ -253,7 +250,7 @@
 
   /**
    * Marks bounding box within frame image where images are to be rendered.
-   * All values are in percentages, so remain true no matter what size frame ends
+   * All values are in percentages, so they remain true no matter what pixel size frame ends
    * up with.
    */
   boundingBox: {
@@ -265,8 +262,8 @@
 
   /**
    * An array of image links to be rendered within frame. Images don't have to adhere
-   * to any size, but it'll help if their aspect ratio is same as aspect ratio of
-   * boundingBox.
+   * to any size (they don't even have to have same size), but it'll help if their
+   * aspect ratio is same as aspect ratio of boundingBox.
    */
   images: ['path/to/frame-carousel/sample/1.jpg',
     'path/to/frame-carousel/sample/2.jpg',
@@ -283,36 +280,36 @@
 var frameCarousel = $('.host-element').data('frameCarousel');
 
 // The argument 'options' is optional in all of the following functions.
-// It is a hash/map with following possible properties (and defaults);
+// It is a hash/map with following possible properties (and defaults):
 // animate: true (determines if you want transition immediate or with animation)
 
-// goes to next screen. if user is already at last screen,
+// Goes to next screen. If user is already at last screen,
 // it'll stay intact.
 frameCarousel.next( options );
 
-// goes to previous screen. if user is already at first screen,
+// Goes to previous screen. If user is already at first screen,
 // it'll stay intact.
 frameCarousel.previous( options );
 
-// goes to screen identified by index. stays intact if index
+// Goes to screen identified by index. Stays intact if index
 // is out of bounds.
 frameCarousel.goto( index, options );
 
-// resizes the frame to given 'width' and 'height'. if no argument
+// Resizes the frame to given 'width' and 'height'. if no argument
 // is passed, it'd resize to original applicable size.
-// if only 'width' is passed, it'd determine 'height' by original
+// If only 'width' is passed, it'd determine 'height' by original
 // aspect ratio. Same is true when only 'height' is passed
 // and not 'width'.
 frameCarousel.resize( options );
 
-// call this if you'd like remove frame image.
-// can be useful on smaller screens.
+// Call this if you'd like remove frame image.
+// Can be useful on smaller screens.
 frameCarousel.removeFrame();
 
 // Gracefully destructs the instance.
 frameCarousel.destroy();
 
-// if 'debug' mode is enabled (see options), any string passed to this method
+// If 'debug' mode is enabled (see options), any string passed to this method
 // will be printed over screen. Useful for testing in situations
 // when console.log/alert are not conveniently available.
 frameCarousel.debug( message );</code></pre>
@@ -327,23 +324,23 @@ frameCarousel.debug( message );</code></pre>
 // information.
 $('.host-element')
 
-  // triggers when a frameCarousel instance is ready
+  // Triggers when a frameCarousel instance is ready.
   .on('fc-ready', function( e ){
 
   })
 
-  // triggers when a frameCarousel instance is destroyed
+  // Triggers when a frameCarousel instance is destroyed.
   .on('fc-destroy', function( e ){
 
   })
 
-  // triggers when a screen transition begins
+  // Triggers when a screen transition begins.
   .on('fc-transition-start', function( e ){
     // e.from => screen index from where transition begun
     // e.to   => screen index to where transition has to end
   })
 
-  // triggers when a screen transition ends
+  // Triggers when a screen transition ends.
   .on('fc-transition-end', function( e ){
     // e.from => screen index from where transition begun
     // e.to   => screen index to where transition ended
