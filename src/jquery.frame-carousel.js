@@ -1,4 +1,4 @@
-/*! Frame Carousel - v0.1.0 - 2015-06-08
+/*! Frame Carousel - v0.1.0 - 2015-06-09
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
 
@@ -189,18 +189,20 @@
           this.attributes = $.extend(this.attributes, {
             originalFrameSize: ofs,
             current: 0,
-            id: (new Date()).getTime()
+            id: (new Date()).getTime(),
+            originalStyleValue: this.$el.attr('style') || '',
+            originalClassValue: this.$el.attr('class') || ''
           });
         }, this));
     },
 
     onClickGoLeft = function() {
-      this.goto(this.attributes.current - 1);
+      this.previous();
       return false;
     },
 
     onClickGoRight = function() {
-      this.goto(this.attributes.current + 1);
+      this.next();
       return false;
     },
 
@@ -296,6 +298,11 @@
       this.elements.$film.css('transition', 'all 0s');
     },
 
+    onWindowResizeWrapper = function() {
+      clearTimeout(this.attributes.resizeTimeout);
+      this.attributes.resizeTimeout = setTimeout($.proxy(onWindowResize, this), 500);
+    },
+
     onWindowResize = function() {
       // console.log('Resize detected ...');
       this.$el.css( getValidFrameSize.call(this) );
@@ -313,10 +320,7 @@
     },
 
     setupHTML = function() {
-      $(window).resize( $.proxy(function(){
-        clearTimeout(this.attributes.resizeTimeout);
-        this.attributes.resizeTimeout = setTimeout($.proxy(onWindowResize, this), 500);
-      }, this));
+      $(window).resize( $.proxy(onWindowResizeWrapper, this));
 
       this.$el
         .fcAddClass('fc')
@@ -373,7 +377,7 @@
             });
             */
 
-      var eventTarget = '.fc-' + this.attributes.id + ' .fc-image-mask';
+      var eventTarget = this.attributes.touchEventTarget = '.fc-' + this.attributes.id + ' .fc-image-mask';
 
       $('body')
         .on(events.touchstart, eventTarget, $.proxy(onSwipeBegin, this))
@@ -512,11 +516,11 @@
       // this.$el.attr('data-debug', this.$film.css('transition'));
       // console.log('[goto] current_screen: '+this._current);
     },
-    next: function() {
-
+    next: function( options ) {
+      this.goto( this.attributes.current + 1, options );
     },
-    previous: function() {
-
+    previous: function( options ) {
+      this.goto( this.attributes.current - 1, options );
     },
     resize: function() {
 
@@ -525,7 +529,23 @@
 
     },
     destroy: function() {
+      var eventTarget = this.attributes.touchEventTarget;
 
+      $('body')
+        .off(events.touchstart, eventTarget, onSwipeBegin)
+        .off(events.touchmove, eventTarget, onSwipeMove)
+        .off(events.touchend, eventTarget, onSwipeEnd)
+        .off(events.touchcancel, eventTarget, onSwipeCancel)
+        .off(events.touchleave, eventTarget, onSwipeEnd);
+
+      $(window).off('resize', onWindowResizeWrapper);
+
+      this.$el
+        .empty()
+        .attr({
+          'class': this.attributes.originalClassValue,
+          'style': this.attributes.originalStyleValue
+        });
     }
   });
 

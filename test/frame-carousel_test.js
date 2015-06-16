@@ -33,4 +33,13 @@
     strictEqual(this.elems.frameCarousel(), this.elems, 'should be chainable');
   });
 
+  test('is referable', function(){
+    expect(1);
+
+
+    notEqual(this.elems
+        .frameCarousel()
+        .data('frameCarousel'), undefined, 'should be referable');
+  });
+
 }(jQuery));
