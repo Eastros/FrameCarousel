@@ -1,4 +1,4 @@
-/*! Frame Carousel - v0.1.0 - 2015-09-17
+/*! Frame Carousel - v0.1.0 - 2015-09-18
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
 /*! Frame Carousel - v0.1.0 - 2015-06-09
@@ -146,6 +146,7 @@
           width: '91.4%',
           height: '61.1%'
         },
+        collapseThreshold: 450,
         images: (function(){ return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function(n){ return dirSample + n + '.jpg'; }); })(),
         controlsPosition: {
           top: '35%'
@@ -308,7 +309,8 @@
 
     onWindowResize = function() {
       // console.log('Resize detected ...');
-      this.$el.css( getValidFrameSize.call(this) );
+      this.$el.css( getValidFrameSize.call(this) )
+        [ $(window).width() > this.options.collapseThreshold ? 'removeClass' : 'addClass']('fc-collapsed');
     },
 
     updateButtonStates = function() {
@@ -321,7 +323,9 @@
         this.elements.$btn_go_right.fcAddClass('disabled');
       }
     },
-
+    
+    
+    
     setupHTML = function() {
       $(window).resize( $.proxy(onWindowResizeWrapper, this));
 
@@ -337,8 +341,11 @@
         this.$el.fcAddClass('fc-debug');
       }
 
-      this.$el.css( getValidFrameSize.call(this) );
-
+      this.$el
+        .css( getValidFrameSize.call(this) )
+        [ $(window).width() > this.options.collapseThreshold ? 'removeClass' : 'addClass']('fc-collapsed');
+      
+      
       this.elements = $.extend(this.elements, {
         $controls: this.$('.fc-controls'),
         $pgn_inner: this.$('.fc-pagination-inner'),

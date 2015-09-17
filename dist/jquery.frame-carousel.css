@@ -108,8 +108,8 @@
   font-size: 40px;
   width: 100%;
   text-align: center;
-  top: 105%px;
-  left: 14px;
+  top: 105%;
+  left: 7px;
   position: absolute;
 }
 .fc .fc-pagination .fc-pagination-inner {
@@ -173,4 +173,14 @@
   left: 0;
   color: red;
   background: white;
+}
+.fc.fc-collapsed {
+  background-image: none !important;
+  margin: 0 !important;
+}
+.fc.fc-collapsed .fc-pagination {
+  top: 70%;
+}
+.fc.fc-collapsed .fc-controls {
+  display: none;
 }

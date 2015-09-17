@@ -247,7 +247,13 @@
     minScreenWidth: 768,
     maxScreenWidth: 1024
   }],
-
+  
+  /**
+   * Screen width in pixels. Removes frame and left/right buttons if current screen size
+   * is less than or equal to this number.
+   */
+  collapseThreshold: 450,
+  
   /**
    * Marks bounding box within frame image where images are to be rendered.
    * All values are in percentages, so they remain true no matter what pixel size frame ends
