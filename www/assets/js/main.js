@@ -44,5 +44,14 @@ $(function(){
   });
   */
 
+  // Fixes: hides menu in collapsed mode when a nav item is clicked
+  // Fix copied from here: https://github.com/twbs/bootstrap/issues/9013
+  $('ul.navbar-nav.nav li a').click(function() {
+    var navbar_toggle = $('.navbar-toggle');
+    if (navbar_toggle.is(':visible')) {
+        navbar_toggle.trigger('click');
+    }
+  });
+
   $('.fc-mac').frameCarousel();
 });
