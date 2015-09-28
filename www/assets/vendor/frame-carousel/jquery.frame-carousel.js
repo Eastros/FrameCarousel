@@ -1,4 +1,4 @@
-/*! Frame Carousel - v0.1.0 - 2015-09-18
+/*! Frame Carousel - v0.1.0 - 2015-09-28
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
 /*! Frame Carousel - v0.1.0 - 2015-06-09
@@ -150,7 +150,9 @@
         images: (function(){ return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function(n){ return dirSample + n + '.jpg'; }); })(),
         controlsPosition: {
           top: '35%'
-        }
+        },
+        autoplay: false,
+        autoplayInterval: 2000
       }, this.options);
 
       return getImage( this.options.frame )
@@ -324,7 +326,9 @@
       }
     },
     
-    
+    onAutoplayStep = function() {
+      this.goto( (this.attributes.current + 1) % this.count() );
+    },
     
     setupHTML = function() {
       $(window).resize( $.proxy(onWindowResizeWrapper, this));
@@ -457,6 +461,10 @@
         this.goto( this.options.first, {
           animate: false
         });
+        
+        if ( this.options.autoplay ) {
+          this.play();
+        }
       }, this));
   }
 
@@ -537,6 +545,15 @@
     },
     removeFrame: function() {
 
+    },
+    play: function() {
+      this.attributes.timeoutID = setInterval($.proxy(onAutoplayStep, this), this.options.autoplayInterval);
+    },
+    stop: function() {
+      if ( this.attributes.timeoutID ) {
+        clearTimeout( this.attributes.timeoutID );
+        delete this.attributes.timeoutID;
+      }
     },
     destroy: function() {
       var eventTarget = this.attributes.touchEventTarget;

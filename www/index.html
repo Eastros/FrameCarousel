@@ -274,7 +274,20 @@
   images: ['path/to/frame-carousel/sample/1.jpg',
     'path/to/frame-carousel/sample/2.jpg',
     ...
-    'path/to/frame-carousel/sample/10.jpg']
+    'path/to/frame-carousel/sample/10.jpg'],
+  
+  /**
+   * If true, triggers autoplay as soon as the plugin is instantiated.
+   * Note that autoplay can also be started by calling 'play()' function
+   * and it can be stopped any time by calling 'stop()' function.
+   */  
+  autoplay: false,
+  
+  /**
+   * Time, in milliseconds, before transition to next screen starts during autoplay.
+   */
+  autoplayInterval: 2000
+    
 });</code></pre>
               </div>
             </div>
@@ -300,6 +313,12 @@ frameCarousel.previous( options );
 // Goes to screen identified by index. Stays intact if index
 // is out of bounds.
 frameCarousel.goto( index, options );
+
+// Triggers autoplay of the screens.
+frameCarousel.play();
+
+// Stops autoplay if it is running.
+frameCarousel.stop();
 
 // Resizes the frame to given 'width' and 'height'. if no argument
 // is passed, it'd resize to original applicable size.
