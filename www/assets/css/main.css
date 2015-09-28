@@ -229,6 +229,7 @@ body {
 }
 a {
   text-decoration: none;
+  word-wrap: break-word;
 }
 a:hover {
   text-decoration: underline;
@@ -292,6 +293,11 @@ a:hover {
 .row-section.row-footer p {
   margin: 0;
   font-size: 12px;
+}
+@media (max-width: 400px) {
+  .row-section.row-footer p.badges {
+    display: none;
+  }
 }
 .row-title {
   text-align: center;

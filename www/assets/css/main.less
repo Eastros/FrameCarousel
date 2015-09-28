@@ -298,7 +298,8 @@ body {
 
 a {
   text-decoration: none;
-
+  word-wrap: break-word;
+  
   &:hover {
     text-decoration: underline;
   }
@@ -380,6 +381,13 @@ a {
     p {
       margin: 0;
       font-size: 12px;
+      
+      
+      @media (max-width:400px){
+        &.badges {
+          display: none;
+        }
+      }
     }
   }
 }
