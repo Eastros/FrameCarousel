@@ -1,6 +1,10 @@
 {
-  "name": "jquery-plugin",
-  "version": "0.0.0-ignored",
+  "name": "frame-carousel",
+  "version": "0.1.0",
+  "description": "A jQuery plugin to create image carousels within frames.",
+  "author": "Umar Ashfaq <umar.mughal2@gmail.com>",
+  "license": "MIT",
+  "keywords": ["jquery", "carousel", "frame"],
   "engines": {
     "node": ">= 0.8.0"
   },
