@@ -1,6 +1,6 @@
-/*! Frame Carousel - v0.1.0 - 2015-09-28
+/*! Frame Carousel - v0.1.0 - 2017-02-17
 * http://www.eastros.com/frame-carousel/
-* Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
+* Copyright (c) 2017 Umar Ashfaq; Licensed MIT */
 /*! Frame Carousel - v0.1.0 - 2015-06-09
 * http://www.eastros.com/frame-carousel/
 * Copyright (c) 2015 Umar Ashfaq; Licensed MIT */
@@ -459,8 +459,11 @@
         setupHTML.call(this);
 
         this.goto( this.options.first, {
-          animate: false
+          animate: false,
+          isInitialCall: true
         });
+        
+        this.$el.trigger('fc-ready');
         
         if ( this.options.autoplay ) {
           this.play();
@@ -503,7 +506,8 @@
         x = (0-distance) + '%',
         cssMap = {
           transform: 'translate3d('+x+', 0, 0)'
-        };
+        },
+        from = this.attributes.current;
 
       // this.$el.attr('data-debug', 'translate3d('+x+', 0, 0)');
       // console.log('[goto] $film.x: '+x);
@@ -511,7 +515,11 @@
       if ( options.animate ) {
         cssMap['transition'] = 'all .4s ease-out';
       }
-
+      
+      if ( !options.isInitialCall ) {
+        this.$el.trigger('fc-transition-start', [from, n]);
+      }
+      
       this.elements.$film.css(cssMap);
 
 
@@ -519,6 +527,7 @@
         setTimeout($.proxy(function(){
           if ( this.attributes.is_animating ) {
             this.attributes.is_animating = false;
+            this.$el.trigger('fc-transition-end', [from, n]);
           }
         }, this), 1000);
       }
@@ -547,7 +556,7 @@
 
     },
     play: function() {
-      this.attributes.timeoutID = setInterval($.proxy(onAutoplayStep, this), this.options.autoplayInterval);
+      this.attributes.timeoutID = setInterval($.proxy(onAutoplayStep, this), this.options.autoplayInterval);      
     },
     stop: function() {
       if ( this.attributes.timeoutID ) {
@@ -572,7 +581,8 @@
         .attr({
           'class': this.attributes.originalClassValue,
           'style': this.attributes.originalStyleValue
-        });
+        })
+        .trigger('fc-destroy');
     }
   });
 

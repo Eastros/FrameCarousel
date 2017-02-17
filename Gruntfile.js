@@ -114,6 +114,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'concat', 'uglify', 'less:core', 'cssmin', 'copy:sample', 'copy:www_dist', 'less:www']);
+  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify', 'less:core', 'cssmin', 'copy:sample', 'copy:www_dist', 'less:www']);
 
 };
